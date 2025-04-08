@@ -1,14 +1,22 @@
 let sorteio = [];
 
 function adicionar() {
-    let nome = document.getElementById('nome-amigo');
-    let nomeLista = document.getElementById('lista-amigos');
+    let nomeInput = document.getElementById('nome-amigo');
+    let nome = nomeInput.value.trim(); // remove espaços no início/fim
 
-    if (nome.value.trim() === '') return; // Evita adicionar nome vazio
+    // Verifica se o campo está vazio
+    if (nome === '') return;
 
-    sorteio.push(nome.value);
+    // Verifica se o nome já existe no array
+    if (sorteio.includes(nome)) {
+        alert('Esse nome já foi adicionado!');
+        return;
+    }
+
+    // Se passou pelas verificações, adiciona
+    sorteio.push(nome);
     atualizarLista();
-    nome.value = '';
+    nomeInput.value = ''; // limpa o input
 }
 
 function excluirAmigo(index) {
